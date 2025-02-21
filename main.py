@@ -56,6 +56,7 @@ def main(request):
     
     # Assign our parameters
     if request_args:
+	print(request_args)
         host = request_args['host']
         ipv4 = request_args['ipv4']
         ipv6 = request_args['ipv6']
