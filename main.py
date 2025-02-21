@@ -58,7 +58,7 @@ def main(request):
     if request_args:
         host = request_args['host']
         ipv4 = request_args['ipv4']
-        # ipv6 = request_args['ipv6']
+        ipv6 = request_args['ipv6']
         key = request_args['key']
 
     if ipv4 and not (validIPv4Address(ipv4)):
