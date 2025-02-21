@@ -52,14 +52,13 @@ def main(request):
     
     logging.info("Update request started.")
 
-    request_args = request.get_json(silent=True)
+    request_args = request.get_json(silent=True, cache=False)
     
     # Assign our parameters
     if request_args:
-	print(request_args)
         host = request_args['host']
         ipv4 = request_args['ipv4']
-        ipv6 = request_args['ipv6']
+        # ipv6 = request_args['ipv6']
         key = request_args['key']
 
     if ipv4 and not (validIPv4Address(ipv4)):
