@@ -58,7 +58,7 @@ def main(request):
     if request_args:
         host = request_args['host']
         ipv4 = request_args['ipv4']
-        ipv6 = request_args['ipv6']
+        # ipv6 = request_args['ipv6']
         key = request_args['key']
 
     if ipv4 and not (validIPv4Address(ipv4)):
@@ -141,8 +141,7 @@ def get_records(client=client, zone=zone):
 
 
 def test_for_record_change(old_ip, new_ip):
-    # logging.info("Existing IP is {}".format(old_ip))
-    logging.info("Come on")
+    logging.info("Existing IP is {}".format(old_ip))
     logging.info("New IP is {}".format(new_ip))
     if old_ip != new_ip:
         logging.info("IP addresses do no match. Update required.")
