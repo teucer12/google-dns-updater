@@ -79,6 +79,7 @@ def main(request):
 
     # Get a list of the current records
     records = get_records()
+    logging.info(records)
 	
 
     # Check for matching records
@@ -86,7 +87,7 @@ def main(request):
         if record.name == host and record.record_type == 'A' and ipv4:
             a_record_found = True
             for data in record.rrdatas:
-                if test_for_record_change(cfg.DnsDomain, ipv4):
+                if test_for_record_change(data, ipv4):
                 # if test_for_record_change(data, ipv4):
                     add_to_change_set(record, 'delete')
                     # add_to_change_set(create_record_set(cfg.gcpDnsDomain, record.record_type, ipv4), 'create')
