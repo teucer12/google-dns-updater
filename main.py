@@ -52,7 +52,7 @@ def main(request):
     
     logging.info("Update request started.")
 
-    request_args = request.get_json(silent=True, cache=False)
+    request_args = request.get_json(silent=True)
     
     # Assign our parameters
     if request_args:
@@ -83,14 +83,12 @@ def main(request):
 
     # Check for matching records
     for record in records:
-        if record.name == cfg.gcpDnsDomain and record.record_type == 'A' and ipv4:
-            logging.info(record.name)
-	    a_record_found = True
+        if record.name == host and record.record_type == 'A' and ipv4:
+            a_record_found = True
+	    logging.info(record.name)
             for data in record.rrdatas:
                 if test_for_record_change(data, ipv4):
-                # if test_for_record_change(data, ipv4):
                     add_to_change_set(record, 'delete')
-                    # add_to_change_set(create_record_set(cfg.gcpDnsDomain, record.record_type, ipv4), 'create')
                     add_to_change_set(create_record_set(host, record.record_type, ipv4), 'create')
                     a_record_changed = True
                     ret_val += "IPv4 changed successful.\n"
