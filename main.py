@@ -88,7 +88,8 @@ def main(request):
             for data in record.rrdatas:
                 if test_for_record_change(data, ipv4):
                     add_to_change_set(record, 'delete')
-                    add_to_change_set(create_record_set(host, record.record_type, ipv4), 'create')
+                    add_to_change_set(create_record_set(cfg.gcpDnsDomain, record.record_type, ipv4), 'create')
+                    # add_to_change_set(create_record_set(host, record.record_type, ipv4), 'create')
                     a_record_changed = True
                     ret_val += "IPv4 changed successful.\n"
                 else:
