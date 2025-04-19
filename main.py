@@ -83,7 +83,7 @@ def main(request):
 
     # Check for matching records
     for record in records:
-        if record.name == cfg.gcpDnsDomain and record.record_type == 'A' and ipv4:
+        if record.name == host and record.record_type == 'A' and ipv4:
             a_record_found = True
             for data in record.rrdatas:
                 if test_for_record_change(data, ipv4):
@@ -141,7 +141,7 @@ def get_records(client=client, zone=zone):
 
 
 def test_for_record_change(old_ip, new_ip):
-    logging.info("Existing IP is {}".format(old_ip))
+    logging.info("Existing IP is {}".format(cfg.gcpDnsDomain))
     logging.info("New IP is {}".format(new_ip))
     if old_ip != new_ip:
         logging.info("IP addresses do no match. Update required.")
