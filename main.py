@@ -79,12 +79,12 @@ def main(request):
 
     # Get a list of the current records
     records = get_records()
-    logging.info(records)
 	
 
     # Check for matching records
     for record in records:
         if record.name == cfg.gcpDnsDomain and record.record_type == 'A' and ipv4:
+	    logging.info(record.name)
             a_record_found = True
             for data in record.rrdatas:
                 if test_for_record_change(data, ipv4):
